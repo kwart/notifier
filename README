@@ -1,0 +1,38 @@
+Simple notification application which works as a HTTP server and uses system
+tray to display notifications. It also plays a system sound on Windows OS.
+
+Requirements:
+=============
+* Java 6 from Sun/Oracle
+
+Usage:
+======
+
+Server:
+-------
+$java -jar Notifier.jar [port  [defaultIcon [soundDesktopProperty]]
+
+default port: 8811
+default icon: sun
+default sound: win.sound.asterisk
+
+Single click on the notification icon switches to the default icon.
+Double click on the notification icon stops the program.
+
+Client:
+-------
+Make normat HTTP request to fire a notification event:
+http://[host]:[port]/[iconWithoutPngSuffix]
+
+Request body is a message (can be empty too).
+
+Client examples:
+----------------
+Default notification which displays warning.png as the system tray icon:
+wget -O - http://localhost:8811/warning
+
+Build finished (ok.png):
+curl -d "Build finished succesfully" http://localhost:8811/ok
+
+Skype notification - chat-message received (timeout is set): 
+curl -d "%sname: %smessage" --connect-timeout 3 http://10.0.2.2:8811/bubble

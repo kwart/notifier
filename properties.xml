@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+
+	<!-- Load user overrides -->
+	<property file="${user.home}/.${ant.project.name}-build.properties" />
+	<property file="${user.home}/.build.properties" />
+	<property file="build.properties" />
+
+    <property name="build.dir" value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="src.dir" value="src"/>
+    <property name="release.dir" value="release"/>
+
+	<tstamp>
+		<format property="build.timestamp" pattern="yyyyMMddHHmm"/>
+	</tstamp>
+
+	<property name="product.name" value="Notifier" />
+	<property name="product.version" value="0.0.1" />
+	<property name="product.filename" value="${product.name}" />
+	
+	<!-- Default options for compiling -->
+	<property name="compile.deprecation" value="false" />
+	<property name="compile.debug" value="true" />
+	<property name="compile.optimize" value="false" />
+	<property name="compile.nowarn" value="true" />
+	<property name="compile.source" value="1.5" />
+	<property name="compile.target" value="1.5" />
+
+	<!-- Launch4j properties -->
+	<!--
+	<property name="launch4j.project" value="launch4j" />
+	<property name="launch4j.version" value="3.0.1" />
+	<property name="launch4j.zip" value="launch4j-${launch4j.version}-win32.zip" />
+	<property name="launch4j.dir" value="launch4j" />
+	-->
+</project>

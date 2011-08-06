@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Notifier" default="all" basedir=".">
+
+	<description>Builds Notifier project</description>
+
+	<!-- import properties -->
+	<import file="properties.xml"/>
+
+	<path id="project.classpath">
+	</path>
+
+	<!-- Clean build -->
+	<target name="clean">
+		<echo message="Cleaning build" />
+		<delete dir="${build.dir}"/>
+		<delete dir="${release.dir}"/>
+	</target>
+
+	<!-- Prepare directory structure for the build -->
+	<target name="prepare">
+		<echo message="Preparing directory structure for the build" />
+		<mkdir dir="${classes.dir}"/>
+		<mkdir dir="${release.dir}"/>
+	</target>
+
+	<!-- Compile sources -->
+	<target name="compile" depends="prepare">
+		<echo message="Compiling sources" />
+		<javac srcdir="${src.dir}" nowarn="${compile.nowarn}"
+			destdir="${classes.dir}" debug="${compile.debug}"
+			deprecation="${compile.deprecation}" optimize="${compile.optimize}"
+			source="${compile.source}" target="${compile.target}"
+			classpathref="project.classpath">
+		</javac>
+	</target>
+
+	<!-- Create jar for the project -->
+	<target name="jar" depends="compile">
+		<echo message="Creating JAR file" />
+		<jar destfile="${release.dir}/${product.filename}.jar" basedir="${classes.dir}">
+			<fileset dir="${classes.dir}"/>
+			<fileset dir="res"/>
+			<fileset dir="src"/>
+			<manifest>
+				<attribute name="Main-Class" value="cz.cacek.notifier.Notifier"/>
+				<attribute name="Implementation-Vendor" value="Josef Cacek"/>
+				<attribute name="Implementation-Title" value="${product.name}"/>
+				<attribute name="Implementation-Version" value="${product.version} ${build.timestamp}"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="all" depends="jar"/>
+
+</project>
