@@ -39,9 +39,9 @@
 	<target name="jar" depends="compile">
 		<echo message="Creating JAR file" />
 		<jar destfile="${release.dir}/${product.filename}.jar" basedir="${classes.dir}">
-			<fileset dir="${classes.dir}"/>
 			<fileset dir="res"/>
 			<fileset dir="src"/>
+			<metainf file="COPYING"/>
 			<manifest>
 				<attribute name="Main-Class" value="cz.cacek.notifier.Notifier"/>
 				<attribute name="Implementation-Vendor" value="Josef Cacek"/>
