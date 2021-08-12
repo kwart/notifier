@@ -42,9 +42,10 @@ import com.sun.net.httpserver.HttpServer;
  * 
  * @author Josef Cacek
  */
+@SuppressWarnings("restriction")
 public class Notifier implements HttpHandler {
 
-  public static final int DEFAULT_PORT = 8811;
+  public static final int DEFAULT_PORT = 8080;
   public static final String DEFAULT_SOUND_PROP = "win.sound.asterisk";
   public static final String DEFAULT_ICON = "sun";
 
@@ -189,7 +190,9 @@ public class Notifier implements HttpHandler {
    */
   public static void main(String[] args) {
     System.out.println("Usage:");
-    System.out.println("$java -jar Notifier.jar [port  [defaultIcon [soundDesktopProperty]]");
+    System.out.println("\tjava -jar Notifier.jar [port  [defaultIcon [soundDesktopProperty]]");
+    System.out.println();
+    System.out.println("Defaults: port=" + DEFAULT_PORT + ", icon=" + DEFAULT_ICON + ", sound=" + DEFAULT_SOUND_PROP);
     System.out.println();
     try {
       int port = 0;
